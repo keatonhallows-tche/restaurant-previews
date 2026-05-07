@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Saigon -- Salt Lake City, Utah</title>
+  <meta name="description" content="Fresh, vibrant Vietnamese cuisine in the heart of Salt Lake City">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#faf9f7;line-height:1.6}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none}
+    :root{--primary:#1a2a1a;--accent:#27ae60;--light:#faf9f7;--text:#1a1a1a;--muted:#666;--border:#e5e0d8}
+    .preview-banner{background:var(--accent);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:500;letter-spacing:.03em;position:sticky;top:0;z-index:999}
+    .preview-banner a{color:#fff;text-decoration:underline}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:18px 5%;background:var(--primary);position:sticky;top:40px;z-index:100}
+    .nav-logo{font-family:'Playfair Display',serif;color:#fff;font-size:1.5rem;font-weight:700}
+    .nav-links{display:flex;gap:28px}
+    .nav-links a{color:rgba(255,255,255,.85);font-size:14px;font-weight:500;letter-spacing:.04em;transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-cta{background:var(--accent);color:#fff !important;padding:10px 22px;border-radius:6px;font-size:14px !important;font-weight:600 !important}
+    .hamburger{display:none;cursor:pointer;color:#fff;font-size:1.5rem}
+    .hero{background:linear-gradient(135deg,#1a2a1a 0%,#2d1b0e 100%);min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 20px;position:relative}
+    .hero-overlay{position:absolute;inset:0;}
+    .hero-content{position:relative;z-index:1;max-width:700px}
+    .hero-label{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:20px}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.5rem);color:#fff;line-height:1.1;margin-bottom:18px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+    .hero p{color:rgba(255,255,255,.88);font-size:clamp(1rem,2.2vw,1.2rem);margin-bottom:36px;font-weight:300}
+    .stars{color:var(--accent);font-size:1.3rem;margin-bottom:28px}
+    .review-count{color:rgba(255,255,255,.7);font-size:14px;font-weight:400}
+    .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--accent);color:#fff;padding:15px 34px;border-radius:8px;font-weight:600;font-size:15px;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 20px rgba(0,0,0,.25)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.3)}
+    .btn-secondary{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.6);color:#fff;padding:13px 30px;border-radius:8px;font-weight:500;font-size:15px;backdrop-filter:blur(4px);transition:background .2s}
+    .btn-secondary:hover{background:rgba(255,255,255,.25)}
+    section{padding:80px 5%}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.2;margin-bottom:16px}
+    .section-subtitle{color:var(--muted);font-size:1.05rem;max-width:580px;margin-bottom:48px}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto}
+    .about-text p{color:#444;line-height:1.8;margin-bottom:16px;font-size:1.05rem}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+    .stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+    .stat-number{font-size:2rem;font-weight:700;color:var(--accent);font-family:'Playfair Display',serif}
+    .stat-label{font-size:13px;color:var(--muted);margin-top:4px}
+    .about-image{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15);aspect-ratio:4/5;background:var(--primary);display:flex;align-items:center;justify-content:center}
+    .about-image img{width:100%;height:100%;object-fit:cover}
+    .about-placeholder{color:rgba(255,255,255,.3);font-family:'Playfair Display',serif;font-size:5rem;text-align:center}
+    .menu-section{background:var(--primary)}
+    .menu-section .section-title{color:#fff}
+    .menu-section .section-label{color:var(--accent)}
+    .menu-section .section-subtitle{color:rgba(255,255,255,.65)}
+    .menu-categories{display:grid;gap:48px;max-width:900px;margin:0 auto}
+    .menu-category-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:12px;margin-bottom:24px}
+    .menu-items{display:grid;gap:16px}
+    .menu-item{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .menu-item:last-child{border-bottom:none}
+    .menu-item-name{font-weight:600;color:#fff;margin-bottom:4px}
+    .menu-item-desc{color:rgba(255,255,255,.55);font-size:13px;line-height:1.5}
+    .menu-item-price{font-weight:700;color:var(--accent);font-size:1.05rem;white-space:nowrap;flex-shrink:0}
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+    .photo-card{border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--border)}
+    .photo-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .photo-card:hover img{transform:scale(1.05)}
+    .info-bar{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);max-width:1100px;margin:0 auto}
+    .info-item{background:#fff;padding:32px 24px;display:flex;gap:16px;align-items:flex-start}
+    .info-icon{font-size:1.6rem;flex-shrink:0}
+    .info-title{font-weight:600;margin-bottom:4px;font-size:15px}
+    .info-value{color:var(--muted);font-size:14px;line-height:1.5}
+    .info-value a{color:var(--accent)}
+    .social-section{text-align:center;background:var(--light)}
+    .social-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+    .social-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);color:var(--text);padding:14px 28px;border-radius:50px;font-weight:500;transition:border-color .2s,transform .15s}
+    .social-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+    footer{background:var(--primary);color:rgba(255,255,255,.7);text-align:center;padding:40px 20px}
+    .footer-name{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:8px}
+    footer a{color:var(--accent)}
+    .footer-copy{font-size:13px;margin-top:20px;opacity:.5}
+    @media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}.hamburger{display:block}.about-grid{grid-template-columns:1fr;gap:40px}.about-image{display:none}section{padding:60px 6%}}
+    @media(max-width:480px){.hero{min-height:80vh;padding:60px 16px}.info-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="preview-banner">
+  This is a <strong>free preview site</strong> built for Little Saigon by Utah Web Studio &mdash;
+  <a href="mailto:keatonhallows@gmail.com">reply to claim your full site</a>
+</div>
+<nav>
+  <div class="nav-logo">Little Saigon</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:(801) 906-8630" class="nav-cta">Reserve</a>
+  </div>
+  <div class="hamburger">&#9776;</div>
+</nav>
+<section class="hero" id="home">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Vietnamese</div>
+    <h1>Little Saigon</h1>
+    <p>Fresh, vibrant Vietnamese cuisine in the heart of Salt Lake City</p>
+    
+    <div class="hero-btns">
+      
+      <a href="tel:(801) 906-8630" class="btn-secondary">Call Us</a>
+      <a href="#contact" class="btn-secondary">Find Us</a>
+    </div>
+  </div>
+</section>
+<section class="info-bar" id="contact">
+  <div class="info-grid">
+    <div class="info-item"><div class="info-icon">&#128205;</div><div><div class="info-title">Location</div><div class="info-value"><a href="https://maps.google.com/?q=Little+Saigon" target="_blank">Salt Lake City, Utah</a></div></div></div>
+    <div class="info-item"><div class="info-icon">&#128336;</div><div><div class="info-title">Hours</div><div class="info-value">Call for hours</div></div></div>
+    <div class="info-item"><div class="info-icon">&#128222;</div><div><div class="info-title">Phone</div><div class="info-value"><a href="tel:(801) 906-8630">(801) 906-8630</a></div></div></div>
+    
+  </div>
+</section>
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">A taste of Vietnamese</h2>
+      <p>Little Saigon has been serving Vietnamese to the local community with a passion for quality ingredients and warm hospitality.</p><p>Every dish is made with care -- because food is more than fuel. It's connection, tradition, and a little bit of love on every plate.</p>
+      <div class="about-stats"><div class="stat-card"><div class="stat-number">Salt Lake City</div><div class="stat-label">Utah</div></div></div>
+    </div>
+    <div class="about-image"><div class="about-placeholder">&#127869;</div></div>
+  </div>
+</section>
+<section class="menu-section" id="menu">
+  <div style="max-width:900px;margin:0 auto;text-align:center;margin-bottom:48px">
+    <div class="section-label">Our Menu</div>
+    <h2 class="section-title">Made with care, served with love</h2>
+    <p class="section-subtitle">Fresh ingredients, bold flavors &mdash; this is what we do.</p>
+  </div>
+  <div class="menu-categories"><div><div class="menu-category-title">Starters</div><div class="menu-items"><div class="menu-item"><div><div class="menu-item-name">House Salad</div><div class="menu-item-desc">Fresh greens, seasonal vegetables</div></div><div class="menu-item-price">$9</div></div><div class="menu-item"><div><div class="menu-item-name">Daily Soup</div><div class="menu-item-desc">Ask your server for today's selection</div></div><div class="menu-item-price">$7</div></div></div></div>
+<div><div class="menu-category-title">Mains</div><div class="menu-items"><div class="menu-item"><div><div class="menu-item-name">Signature Entree</div><div class="menu-item-desc">Chef's creation with fresh ingredients</div></div><div class="menu-item-price">$18</div></div><div class="menu-item"><div><div class="menu-item-name">Grilled Salmon</div><div class="menu-item-desc">Seasonal vegetables, lemon butter sauce</div></div><div class="menu-item-price">$22</div></div></div></div></div>
+</section>
+
+<section class="social-section"><div class="section-label">Stay Connected</div><h2 class="section-title">Follow Us</h2><p class="section-subtitle">Daily specials, behind-the-scenes, and food that makes you hungry.</p><div class="social-btns"><a href="https://maps.google.com/?q=Little+Saigon" target="_blank" class="social-btn">&#11088; Leave a Review</a></div></section>
+<footer>
+  <div class="footer-name">Little Saigon</div>
+  <p>Salt Lake City, Utah &middot; (801) 906-8630</p>
+  <div class="footer-copy">&copy; 2026 Little Saigon. Preview site by <a href="mailto:keatonhallows@gmail.com">Utah Web Studio</a> &middot; May 2026</div>
+</footer>
+<script>
+document.querySelector('.hamburger')&&document.querySelector('.hamburger').addEventListener('click',function(){var l=document.querySelector('.nav-links');l.style.display=l.style.display==='flex'?'none':'flex';l.style.flexDirection='column';l.style.position='absolute';l.style.top='60px';l.style.right='20px';l.style.background='var(--primary)';l.style.padding='16px 24px';l.style.borderRadius='10px';l.style.boxShadow='0 8px 30px rgba(0,0,0,.3)'});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}})});
+</script>
+</body>
+</html>
